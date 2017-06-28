@@ -3,7 +3,7 @@ package com.example.android.provectus;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -16,13 +16,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private ListView lv;
     ArrayList<HashMap<String, String>> contactList;
-
-    int recursion = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,89 +28,81 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         contactList = new ArrayList<>();
-        lv = (ListView) findViewById (R.id.random_list);
+        lv = (ListView) findViewById(R.id.random_list);
 
-
-
-        new GetContacts().execute();
+        new GetList().execute();
     }
 
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
+    private class GetList extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText (MainActivity.this,"bitch wait",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "bitch wait", Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
 
-            if (recursion < 8) {
 
-            final String url = "https://randomuser.me/api/?inc=picture,name,email,nat,login,phone?format=json";
+            final String url = "https://randomuser.me/api/?results=10&inc=picture,name,email,login,phone&format=json";
 
             HttpConnection http = new HttpConnection();
-
-            // Making a request to url and getting response
-
             String jsonStr = http.makeServiceCall(url);
 
             if (jsonStr != null) {
+
                 try {
+
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
-                    // Getting JSON Array node
                     JSONArray contacts = jsonObj.getJSONArray("results");
 
-                    JSONObject c = contacts.getJSONObject(0);
+                    for (int i = 0; i < contacts.length(); i++) {
 
-                    JSONObject name = c.getJSONObject("name");
-                    String firstName = name.getString("first");
-                    String lastName = name.getString("last");
+                        JSONObject c = contacts.getJSONObject(i);
 
-                    String mail = c.getString("email");
+                        JSONObject name = c.getJSONObject("name");
+                        String firstName = name.getString("first");
+                        String lastName = name.getString("last");
 
-                    //String mobile = c.getJSONObject("phone").getString("phone");
-//                        String mobile = phone.getString("phone");
+                        String mail = c.getString("email");
 
-                    // tmp hash map for single contact
-                    HashMap<String, String> contact = new HashMap<>();
+                        JSONObject pic = c.getJSONObject("picture");
+                        String image = pic.getString("medium");
 
-                    // adding each child node to HashMap key => value
-                    contact.put("name", (firstName + " " + lastName));
-                    contact.put("email", mail);
+                        JSONObject login = c.getJSONObject("login");
+                        String username = login.getString("username");
 
-                    // adding contact to contact list
-                    contactList.add(contact);
+                        String phone = c.getString("phone");
 
 
+                        HashMap<String, String> contact = new HashMap<>();
+
+                        contact.put("name", (firstName + " " + lastName));
+                        contact.put("email", mail);
+                        contact.put("image", image);
+                        contact.put("phone", phone);
+                        contact.put("username", username);
+
+                        contactList.add(contact);
+                    }
                 } catch (final JSONException e) {
-//                    Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
 
             } else {
-//                Log.e(TAG, "Couldn't get json from server.");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Couldn't get json from server. Retrying..", Toast.LENGTH_LONG).show();
                     }
                 });
-            }
-
-            recursion++;
-                doInBackground();
             }
 
             return null;
@@ -124,10 +114,11 @@ public class MainActivity extends AppCompatActivity {
             ListAdapter adapter = new SimpleAdapter
                     (
                             MainActivity.this, contactList, R.layout.list,
-                            new String[]{ "name","email"}, new int[]{R.id.name, R.id.mail}
+                            new String[]{"name", "email"}, new int[]{R.id.name, R.id.mail}
                     );
 
             lv.setAdapter(adapter);
         }
     }
 }
+

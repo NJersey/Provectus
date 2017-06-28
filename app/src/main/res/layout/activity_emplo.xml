@@ -1,0 +1,64 @@
+<!--
+
+Icon with text
+
+Primary text font: Roboto Regular 16sp
+Secondary text font: Roboto Regular 14sp
+Tile height: 72dp
+Left icon padding: 16dp
+Text padding, left: 72dp
+Text padding, top and bottom: 20dp
+Bottom padding is measured from the baseline.
+
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.provectus.Emplo">
+
+    <ImageView
+        android:id="@+id/userImage"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        android:fontFamily="Roboto Regular"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="32sp" />
+
+
+    <ImageView
+        android:id="@+id/iconPhone"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="16dp"/>
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="Roboto Regular"
+        android:paddingLeft="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_alignTop="@+id/iconPhone"
+        android:layout_marginLeft="60dp"
+        android:layout_alignBottom="@+id/iconPhone" />
+
+
+</RelativeLayout>

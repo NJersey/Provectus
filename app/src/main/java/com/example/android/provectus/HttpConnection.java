@@ -1,11 +1,7 @@
 package com.example.android.provectus;
 
-import android.util.Log;
-
 import java.io.*;
 import java.net.*;
-
-// https://randomuser.me/api/?inc=picture,name,email,nat,login,phone,location?format=json
 
 public class HttpConnection {
 
@@ -49,7 +45,6 @@ public class HttpConnection {
 
             while ((line = reader.readLine()) != null)
                 sb.append(line).append('\n');
-
 
         } catch (IOException e) {
             e.printStackTrace();
