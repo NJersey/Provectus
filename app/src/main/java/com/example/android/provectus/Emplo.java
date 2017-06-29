@@ -1,10 +1,20 @@
 package com.example.android.provectus;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Emplo extends AppCompatActivity {
 
@@ -17,16 +27,19 @@ public class Emplo extends AppCompatActivity {
         TextView tPhone = (TextView) findViewById(R.id.phone);
         TextView tMail = (TextView) findViewById(R.id.mail);
         TextView tLogin = (TextView) findViewById(R.id.login);
-        ImageView image = (ImageView) findViewById(R.id.userImage);
+        ImageView iView = (ImageView) findViewById(R.id.userImage);
 
         Intent intent = getIntent();
 
         tName.setText(intent.getStringExtra("name"));
         tPhone.setText(intent.getStringExtra("phone"));
-        tMail.setText(intent.getStringExtra("mail"));
-        tLogin.setText(intent.getStringExtra("login"));
+        tMail.setText(intent.getStringExtra("email"));
+        tLogin.setText(intent.getStringExtra("username"));
 
-        int resID = getResources().getIdentifier(intent.getStringExtra("image") , "drawable", getPackageName());
-        image.setImageResource(resID);
+        Picasso.with(this)
+                .load(intent.getStringExtra("image"))
+                //.resize()
+                .into(iView);
+
     }
 }

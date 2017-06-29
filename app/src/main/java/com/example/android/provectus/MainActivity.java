@@ -5,10 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -20,9 +18,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static com.example.android.provectus.R.id.mail;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
                         String mail = c.getString("email");
 
                         JSONObject pic = c.getJSONObject("picture");
+                        String large = pic.getString("large");
                         String image = pic.getString("medium");
+                        String thumbnail = pic.getString("thumbnail");
 
                         JSONObject login = c.getJSONObject("login");
                         String username = login.getString("username");
@@ -89,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                         contact.put("name", (firstName + " " + lastName));
                         contact.put("email", mail);
                         contact.put("image", image);
+                        contact.put("thumbnail", thumbnail);
+                        contact.put("large", large);
                         contact.put("phone", phone);
                         contact.put("username", username);
 
@@ -118,13 +117,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+
             ListAdapter adapter = new SimpleAdapter
                     (
                             MainActivity.this, contactList, R.layout.list,
-                            new String[]{"name", "email", "image"}, new int[]{R.id.name, R.id.mail, R.id.thumbnail}
+                            new String[]{"name", "email"}, new int[]{R.id.name, R.id.mail}
                     );
-            lv.setAdapter(adapter);
-
+           
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> av, View v, int position, long id) {
@@ -132,13 +131,15 @@ public class MainActivity extends AppCompatActivity {
 
                     intent.putExtra("name", contactList.get(position).get("name"));
                     intent.putExtra("email", contactList.get(position).get("email"));
-                    intent.putExtra("image", contactList.get(position).get("image"));
+                    intent.putExtra("image", contactList.get(position).get("large"));
                     intent.putExtra("phone", contactList.get(position).get("phone"));
                     intent.putExtra("username", contactList.get(position).get("username"));
 
                     startActivity(intent);
                 }
             });
+
+            lv.setAdapter(adapter);
         }
     }
 }
