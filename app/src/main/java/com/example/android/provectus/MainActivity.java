@@ -1,9 +1,14 @@
 package com.example.android.provectus;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -15,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.example.android.provectus.R.id.mail;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -114,10 +121,24 @@ public class MainActivity extends AppCompatActivity {
             ListAdapter adapter = new SimpleAdapter
                     (
                             MainActivity.this, contactList, R.layout.list,
-                            new String[]{"name", "email"}, new int[]{R.id.name, R.id.mail}
+                            new String[]{"name", "email", "image"}, new int[]{R.id.name, R.id.mail, R.id.thumbnail}
                     );
-
             lv.setAdapter(adapter);
+
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> av, View v, int position, long id) {
+                    Intent intent = new Intent(MainActivity.this, Emplo.class);
+
+                    intent.putExtra("name", contactList.get(position).get("name"));
+                    intent.putExtra("email", contactList.get(position).get("email"));
+                    intent.putExtra("image", contactList.get(position).get("image"));
+                    intent.putExtra("phone", contactList.get(position).get("phone"));
+                    intent.putExtra("username", contactList.get(position).get("username"));
+
+                    startActivity(intent);
+                }
+            });
         }
     }
 }
