@@ -18,98 +18,142 @@ Bottom padding is measured from the baseline.
     android:layout_height="match_parent"
     tools:context="com.example.android.provectus.Emplo">
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/topimage"
+        android:layout_width="match_parent"
+        android:layout_height="230dp">
+
+        <ImageView
         android:id="@+id/userImage"
         android:layout_width="match_parent"
-        android:layout_height="230dp" />
+        android:layout_height="match_parent" />
 
-    <TextView
+        <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="150dp"
         android:fontFamily="Roboto Regular"
-        android:textAlignment="center"
+        android:gravity="center"
+        android:paddingLeft="16dp"
         android:textAllCaps="true"
-        android:textColor="@android:color/holo_blue_bright"
-        android:textSize="28sp" />
+        android:textColor="#3F51B5"
+        android:textSize="34sp"/>
 
-    <LinearLayout
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/phonelayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="72dp"
         android:orientation="vertical"
-        android:layout_below="@id/userImage">
+        android:layout_below="@id/topimage">
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/phone"/>
 
         <TextView
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="Roboto Regular"
             android:textColor="@android:color/primary_text_light"
-            android:textSize="16sp" />
-
+            android:textSize="16sp"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="72dp"
             android:layout_marginRight="16dp"
             android:fontFamily="Roboto Regular"
             android:text="Phone"
             android:textColor="@android:color/secondary_text_dark"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/maillayout"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="vertical"
+        android:layout_below="@id/phonelayout">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/mail"/>
 
         <TextView
             android:id="@+id/mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="Roboto Regular"
             android:textColor="@android:color/primary_text_light"
             android:textSize="16sp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/mail"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="72dp"
             android:layout_marginRight="16dp"
             android:fontFamily="Roboto Regular"
             android:text="Email"
             android:textColor="@android:color/secondary_text_dark"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/loginlayout"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="vertical"
+        android:layout_below="@id/maillayout">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/pv"/>
 
         <TextView
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="Roboto Regular"
             android:textColor="@android:color/primary_text_light"
             android:textSize="16sp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login"
-            android:layout_marginLeft="70dp"
+            android:layout_below="@id/login"
+            android:layout_marginLeft="72dp"
             android:layout_marginRight="16dp"
             android:fontFamily="Roboto Regular"
             android:text="Login"
             android:textColor="@android:color/secondary_text_dark"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

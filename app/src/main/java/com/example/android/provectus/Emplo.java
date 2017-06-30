@@ -1,9 +1,6 @@
 package com.example.android.provectus;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -11,10 +8,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class Emplo extends AppCompatActivity {
 
@@ -39,7 +32,7 @@ public class Emplo extends AppCompatActivity {
         Picasso.with(this)
                 .load(intent.getStringExtra("image"))
                 //.resize()
+                .fit()
                 .into(iView);
-
     }
 }

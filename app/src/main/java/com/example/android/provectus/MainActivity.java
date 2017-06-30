@@ -40,12 +40,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(MainActivity.this, "bitch wait", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Retrieving contacts from JSON request.\nPlease, wait.", Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
-
 
             final String url = "https://randomuser.me/api/?results=10&inc=picture,name,email,login,phone&format=json";
 
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             String jsonStr = http.makeServiceCall(url);
 
             if (jsonStr != null) {
-
                 try {
 
                     JSONObject jsonObj = new JSONObject(jsonStr);
@@ -101,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-
             } else {
                 runOnUiThread(new Runnable() {
                     @Override
@@ -110,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-
             return null;
         }
 
@@ -123,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                             MainActivity.this, contactList, R.layout.list,
                             new String[]{"name", "email"}, new int[]{R.id.name, R.id.mail}
                     );
-           
+
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> av, View v, int position, long id) {
@@ -138,9 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
             lv.setAdapter(adapter);
         }
     }
 }
-

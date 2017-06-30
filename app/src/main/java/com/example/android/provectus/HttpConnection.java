@@ -18,7 +18,6 @@ public class HttpConnection {
             InputStream in = new BufferedInputStream(conn.getInputStream());
             response = convertStreamToString(in);
 
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
 
@@ -32,7 +31,6 @@ public class HttpConnection {
             e.printStackTrace();
 
         }
-
         return response;
     }
 
