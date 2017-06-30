@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(MainActivity.this, "Retrieving contacts from JSON request.\nPlease, wait.", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Retrieving contacts", Toast.LENGTH_LONG).show();
         }
 
         @Override
