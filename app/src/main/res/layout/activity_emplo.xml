@@ -24,21 +24,21 @@ Bottom padding is measured from the baseline.
         android:layout_height="230dp">
 
         <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            android:id="@+id/userImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:fontFamily="Roboto Regular"
-        android:gravity="center"
-        android:paddingLeft="16dp"
-        android:textAllCaps="true"
-        android:textColor="#3F51B5"
-        android:textSize="34sp"/>
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:fontFamily="Roboto Regular"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:textAllCaps="true"
+            android:textColor="#3F51B5"
+            android:textSize="34sp" />
 
     </RelativeLayout>
 
@@ -54,7 +54,7 @@ Bottom padding is measured from the baseline.
             android:layout_height="20dp"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/phone"/>
+            android:src="@drawable/phone" />
 
         <TextView
             android:id="@+id/phone"
@@ -65,7 +65,7 @@ Bottom padding is measured from the baseline.
             android:layout_marginTop="20dp"
             android:fontFamily="Roboto Regular"
             android:textColor="@android:color/primary_text_light"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,7 +92,7 @@ Bottom padding is measured from the baseline.
             android:layout_height="20dp"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/mail"/>
+            android:src="@drawable/mail" />
 
         <TextView
             android:id="@+id/mail"
@@ -130,7 +130,7 @@ Bottom padding is measured from the baseline.
             android:layout_height="20dp"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/pv"/>
+            android:src="@drawable/pv" />
 
         <TextView
             android:id="@+id/login"
